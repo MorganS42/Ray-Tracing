@@ -5,7 +5,7 @@ public class EntityObject {
 	
 	double reflect = 0;
 	double transparent = 0;
-	Color color = new Color(0);
+	Color color;
 	
 	EntityObject() {
 	}

@@ -107,6 +107,13 @@ public class Ray {
 	}
 	
 	EntityObject intersect() {
+		return intersect(false,0);
+	}
+	EntityObject intersect(double r) {
+		return intersect(true,r);
+	}
+	
+	EntityObject intersect(boolean max, double maxt) {
 		double x1 = x;
 		double y1 = y;
 		double z1 = z;
@@ -143,7 +150,7 @@ public class Ray {
 						t2 = t1;
 					}
 					
-					if(t > correction && (t<it || it==-1)) {
+					if(t > correction && (t<it || it==-1) && (t<=maxt || !max)) {
 						ix = x + vx * t;
 						iy = y + vy * t;
 						iz = z + vz * t;
@@ -237,7 +244,7 @@ public class Ray {
 						}
 					break;
 				}
-				if(intersect && t > correction && (t<it || it==-1)) {
+				if(intersect && t > correction && (t<it || it==-1) && (t<=maxt || !max)) {
 					ix = x + vx*t;
 					iy = y + vy*t;
 					iz = z + vz*t;

@@ -9,17 +9,6 @@ public class Plane extends EntityObject {
 		super(x,y,z,color);
 		this.axis = axis;
 	}
-	Plane(double x, double y, double z,PlaneAxis axis, boolean checker) {
-		super(x,y,z, new Color(255,255,255));
-		this.checker = checker;
-		this.axis = axis;
-	}
-	Plane(double x, double y, double z,PlaneAxis axis, boolean checker, double checkerSize) {
-		super(x,y,z, new Color(255,255,255));
-		this.checker = checker;
-		this.checkerSize = checkerSize;
-		this.axis = axis;
-	}
 	Plane(double x, double y, double z,PlaneAxis axis, Color color, boolean checker, double checkerSize) {
 		super(x,y,z,color);
 		this.checker = checker;

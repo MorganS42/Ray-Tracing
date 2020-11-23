@@ -1,6 +1,8 @@
 import java.awt.Color;
 
 public class Main {
+	public static final int sceneToRender = 0;
+	
 	static Window window;
 	static Screen screen = new Screen(0,0,0);
 	static Camera camera = new Camera(Window.width/2,0,-Window.height*2);
@@ -11,6 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		window = new Window();
 		
+		scene.initializeScenes();
 		scene.createScene();
 		scene.renderScene();
 	}
