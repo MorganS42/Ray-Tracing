@@ -6,24 +6,24 @@ import java.awt.event.KeyEvent;
 
 public class Input extends KeyAdapter {
 	private static final double smoothnessMove = 50;
-	private static final double smoothnessTurn = 10;
+	private static final double smoothnessTurn = 0.01;
 	
 	public void keyPressed(KeyEvent evt) {
 		switch(evt.getKeyCode()) {
 			case KeyEvent.VK_UP:
-				Main.camera.y+=smoothnessTurn;
+				Main.screen.yzr+=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_DOWN:
-	        	Main.camera.y-=smoothnessTurn;
+	        	Main.screen.yzr-=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_LEFT:
-	        	Main.camera.x+=smoothnessTurn;
+	        	Main.screen.xzr+=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_RIGHT :
-	        	Main.camera.x-=smoothnessTurn;
+	        	Main.screen.xzr-=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_SHIFT :

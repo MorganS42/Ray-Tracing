@@ -18,7 +18,7 @@ class Window extends JFrame {
 	JFrame frame;
 	Draw draw;
 	Window() {
-		this.fullRes(0.1);
+		this.fullRes(0.15);
 		frame = new JFrame("Ray Tracing");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);

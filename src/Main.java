@@ -5,14 +5,17 @@ public class Main {
 	public static final double gravity = 1;
 	
 	static Window window;
-	static Screen screen = new Screen(0,0,0);
-	static Camera camera = new Camera(Window.width/2,0,-Window.height*2);
+	static Camera camera;
+	static Screen screen;
 	static final Scene scene = new Scene();
 	
 	static final boolean darkMode = true;
 	
 	public static void main(String[] args) {
 		window = new Window();
+		
+		camera = new Camera(Window.width/2,0,-Window.height*2);
+		screen = new Screen(0,0,0);
 		
 		scene.initializeScenes();
 		scene.createScene();
