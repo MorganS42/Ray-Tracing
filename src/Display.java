@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 class Window extends JFrame {	
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	public static int width = 100;
-	public static int height = 100;
-	public static int res = 10;
+	public static int width = 60;
+	public static int height = 40;
+	public static int res = 20;
 	public static Color[][] screen = new Color[width][height];
 	
 	JFrame frame;
 	Draw draw;
 	Window() {
-		this.fullRes();
+		this.fullRes(0.1);
 		frame = new JFrame("Ray Tracing");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
@@ -31,10 +31,13 @@ class Window extends JFrame {
 	}
 	void update() {
 	}
-	void fullRes() { 
-		Window.width = Window.screenSize.width;
-    	Window.height = Window.screenSize.height;
-    	Window.res = 1;
+	void fullRes() {
+		this.fullRes(1);
+	}
+	void fullRes(double res) { 
+		Window.width = (int) (Window.screenSize.width * res);
+    	Window.height = (int) (Window.screenSize.height * res);
+    	Window.res = (int) Math.round(1/res);
     	Window.screen = new Color[Window.width][Window.height];
     	Main.camera = new Camera(Window.width/2,0,-Window.height*2);
 	}

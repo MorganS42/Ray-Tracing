@@ -5,55 +5,56 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Input extends KeyAdapter {
-	private static final double smoothness = 10;
+	private static final double smoothnessMove = 50;
+	private static final double smoothnessTurn = 10;
 	
 	public void keyPressed(KeyEvent evt) {
 		switch(evt.getKeyCode()) {
 			case KeyEvent.VK_UP:
-				Main.camera.y+=smoothness;
+				Main.camera.y+=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_DOWN:
-	        	Main.camera.y-=smoothness;
+	        	Main.camera.y-=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_LEFT:
-	        	Main.camera.x+=smoothness;
+	        	Main.camera.x+=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_RIGHT :
-	        	Main.camera.x-=smoothness;
+	        	Main.camera.x-=smoothnessTurn;
             break;
             
 	        case KeyEvent.VK_SHIFT :
-	        	Main.screen.y+=smoothness;
-	        	Main.camera.y+=smoothness;
+	        	Main.screen.y+=smoothnessMove;
+	        	Main.camera.y+=smoothnessMove;
             break;
             
 	        case KeyEvent.VK_SPACE :
-	        	Main.screen.y-=smoothness;
-	        	Main.camera.y-=smoothness;
+	        	Main.screen.y-=smoothnessMove;
+	        	Main.camera.y-=smoothnessMove;
             break;
 		}
 		switch(evt.getKeyChar()) {
 			case 'w':
-				Main.screen.z+=smoothness;
-				Main.camera.z+=smoothness;
+				Main.screen.z+=smoothnessMove;
+				Main.camera.z+=smoothnessMove;
             break;
             
 	        case 's':
-	        	Main.screen.z-=smoothness;
-				Main.camera.z-=smoothness;
+	        	Main.screen.z-=smoothnessMove;
+				Main.camera.z-=smoothnessMove;
             break;
             
 	        case 'a':
-	        	Main.screen.x-=smoothness;
-				Main.camera.x-=smoothness;
+	        	Main.screen.x-=smoothnessMove;
+				Main.camera.x-=smoothnessMove;
             break;
             
 	        case 'd':
-	        	Main.screen.x+=smoothness;
-				Main.camera.x+=smoothness;
+	        	Main.screen.x+=smoothnessMove;
+				Main.camera.x+=smoothnessMove;
             break;
             
 	        case 'r':

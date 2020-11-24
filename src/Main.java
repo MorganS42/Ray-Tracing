@@ -2,6 +2,7 @@ import java.awt.Color;
 
 public class Main {
 	public static final int sceneToRender = 0;
+	public static final double gravity = 1;
 	
 	static Window window;
 	static Screen screen = new Screen(0,0,0);
@@ -15,7 +16,11 @@ public class Main {
 		
 		scene.initializeScenes();
 		scene.createScene();
-		scene.renderScene();
+		
+		while(true) {
+			scene.updateScene();
+			scene.renderScene();
+		}
 	}
 	
 	public static double[] vectorNormalize(double x, double y, double z) {

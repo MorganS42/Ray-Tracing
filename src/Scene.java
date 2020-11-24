@@ -10,27 +10,50 @@ public class Scene {
 	
 	public static final int maxDepth = 4;
 
+	public static final Color skyColor = new Color(0,0,0);
+	
 	Scene() {
 	}
 	
 	void initializeScenes() {
 		scenes.add(new ArrayList<EntityObject>(Arrays.asList(
+			new Plane(0,600,0,PlaneAxis.Y,new Color(255,255,255),0,true, 300),//new Color(0,100,255)));
+			//new Plane(0,-1000,0,PlaneAxis.Y,new Color(0,0,255),0),
+			new Plane(-1500,0,0,PlaneAxis.X,new Color(0,255,0),0),
+			new Plane(2000,0,0,PlaneAxis.X,new Color(0,120,255),0),
+			new Plane(0,0,2500,PlaneAxis.Z,new Color(255,255,255),0),
+			//new Plane(0,0,-200,PlaneAxis.Z,new Color(255,255,0),0),
+				
+			new LightSource(-1000,0,2000, new Color(0,0,255),1e7),
+			new LightSource(0,0,0, new Color(0,255,0),1e7),
+			new LightSource(-1000,400,0, new Color(255,255,255),2e6),
+			new LightSource(1000,-100,1000, new Color(255,0,0),5e6),
+				
+			new Sphere(0,400,1800,200, new Color(255,0,255),0.5,0,0,-15,0,0),
+			new Sphere(500,300,1800,300, new Color(255,255,0),1,0),
+			new Sphere(-500,200,1000,400, new Color(0,255,0),1,0),
+			new Sphere(-800,450,400,150, new Color(0,255,255),0.5,0),
+			new Sphere(1200,1000,1000,500, new Color(0,255,0),0.7,0)
+		)));
+		
+		scenes.add(new ArrayList<EntityObject>(Arrays.asList(
 			new Plane(0,600,0,PlaneAxis.Y,new Color(255,255,255),0.5,true, 300),//new Color(0,100,255)));
-			new Plane(0,-1000,0,PlaneAxis.Y,new Color(0,0,255)),
-			new Plane(-1500,0,0,PlaneAxis.X,new Color(0,255,0)),
-			new Plane(1500,0,0,PlaneAxis.X,new Color(255,0,0)),
-			new Plane(0,0,2500,PlaneAxis.Z,new Color(255,255,255)),
-			new Plane(0,0,-200,PlaneAxis.Z,new Color(255,255,0),0,false, 300),
+			new Plane(0,-1000,0,PlaneAxis.Y,new Color(0,0,255),0),
+			new Plane(-1500,0,0,PlaneAxis.X,new Color(0,255,0),0),
+			new Plane(1500,0,0,PlaneAxis.X,new Color(255,0,0),0),
+			new Plane(0,0,2500,PlaneAxis.Z,new Color(255,255,255),0),
+			//new Plane(0,0,-200,PlaneAxis.Z,new Color(255,255,0),0),
 				
 			new LightSource(-1000,0,2000, new Color(0,0,255),1e7),
 			new LightSource(0,0,0, new Color(255,0,0),1e7),
 			new LightSource(-1000,400,0, new Color(255,255,255),2e6),
+			new LightSource(1000,-100,1000, new Color(0,255,0),5e6),
 				
-			new Sphere(0,400,2000,200, new Color(255,0,255),0.5),
-			new Sphere(500,300,1800,300, new Color(255,255,0),1,0),
-			new Sphere(-500,200,1000,400, new Color(0,255,0),0.7,0),
-			new Sphere(-800,450,400,150, new Color(0,255,255),0.5,0),
-			new Sphere(1200,600,1000,500, new Color(0,255,0),0.7,0)
+			new Sphere(0,0,1800,200, new Color(255,0,255),0.5,0,0.9,5,0,5),
+			new Sphere(500,300,1800,300, new Color(255,255,0),1,0,0.9,-5,0,10),
+			new Sphere(-500,200,1000,400, new Color(0,255,0),0.7,0,0.9,5,0,15),
+			new Sphere(-800,450,400,150, new Color(0,255,255),0.5,0,0.9,-5,0,20),
+			new Sphere(1200,1000,1000,500, new Color(0,255,0),0.7,0,0.9,5,0,25)
 		)));
 		
 		scenes.add(new ArrayList<EntityObject>(Arrays.asList(
@@ -65,5 +88,11 @@ public class Scene {
 		}
 		
 		Main.window.draw.repaint();
+	}
+	
+	void updateScene() {
+		for(EntityObject o : objects) {
+			o.run();
+		}
 	}
 }

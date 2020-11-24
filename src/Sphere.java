@@ -17,4 +17,12 @@ public class Sphere extends EntityObject {
 		super(x,y,z, color,reflect, transparent);
 		this.r = r;
 	}
+	Sphere(double x, double y, double z, double r, Color color, double reflect, double transparent, double bounce) {
+		super(x,y,z, color,reflect, transparent,bounce);
+		this.r = r;
+	}
+	Sphere(double x, double y, double z, double r, Color color, double reflect, double transparent, double bounce, double xv, double yv, double zv) {
+		super(x,y,z, color,reflect, transparent,bounce,xv,yv,zv);
+		this.r = r;
+	}
 }

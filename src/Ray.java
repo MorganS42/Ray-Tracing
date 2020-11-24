@@ -31,12 +31,16 @@ public class Ray {
 	}
 	
 	Color run() {
-		Color color = new Color(40,0,100);
+		Color color = Scene.skyColor;
 		
 		EntityObject o = this.intersect();
 		if(o!=null) {
 			color = o.color;
 			if(o.getClass() == Plane.class) {
+				if(((Plane)o).rainbow) {
+					color = new Color(Color.HSBtoRGB(0, 255, 255));
+				}
+				
 				if(((Plane)o).checker) {
 					boolean xl = (Math.round(ix/((Plane)o).checkerSize) % 2 == 0);
 					boolean yl = (Math.round(iy/((Plane)o).checkerSize) % 2 == 0);
@@ -127,8 +131,6 @@ public class Ray {
 		
 		for(EntityObject o : Scene.objects) {
 			if(o.getClass() == Sphere.class) { 
-				
-				
 				double a = Math.pow((x2 - x1),2) + Math.pow((y2 - y1),2) + Math.pow((z2 - z1),2);
 				double b = (-2)*((x2 - x1)*(o.x - x1) + (y2 - y1)*(o.y - y1) + (o.z - z1)*(z2 - z1));
 				double c = Math.pow((o.x - x1),2) + Math.pow((o.y - y1),2) + Math.pow((o.z - z1),2) - ((Sphere)o).r*((Sphere)o).r;
