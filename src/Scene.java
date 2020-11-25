@@ -77,21 +77,22 @@ public class Scene {
 		}
 	}
 	
-	void renderScene() {
+	Color[][] renderScene() {
+		Color[][] frame = new Color[Window.width][Window.height];
 		for(int x = 0; x<Window.width; x++) {
 			for(int y = 0; y<Window.height; y++) {
-				double fx = x + Screen.dis * Math.cos(Main.screen.xzr); //final x
+				double fx = x; //+ Screen.dis * Math.cos(Main.screen.xzr); //final x
 				double fy = y; //final y
-				double fz = x - Screen.dis * Math.sin(Main.screen.xzr); //final z
+				double fz = 0; //- Screen.dis * Math.sin(Main.screen.xzr); //final z
 				
 				double[] nv = Main.vectorNormalize(Main.screen.x + fx - Main.camera.x, Main.screen.y + fy - Main.camera.y, Main.screen.z + fz - Main.camera.z);
-				Window.screen[x][y] = (
+				frame[x][y] = (
 						new Ray(Main.screen.x + fx - Window.width/2,Main.screen.y + fy - Window.height/2,Main.screen.z + fz, nv,1)
 				).run();
 			}
 		}
 		
-		Main.window.draw.repaint();
+		return frame;
 	}
 	
 	void updateScene() {

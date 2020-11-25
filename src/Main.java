@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 	public static final int sceneToRender = 0;
@@ -7,9 +9,13 @@ public class Main {
 	static Window window;
 	static Camera camera;
 	static Screen screen;
+	static Video video;
 	static final Scene scene = new Scene();
 	
 	static final boolean darkMode = true;
+	static final boolean runVideo = true;
+	static final int videoFrames = 100;
+	static final int videoFPS = 50;
 	
 	public static void main(String[] args) {
 		window = new Window();
@@ -20,9 +26,31 @@ public class Main {
 		scene.initializeScenes();
 		scene.createScene();
 		
-		while(true) {
-			scene.updateScene();
-			scene.renderScene();
+		if(runVideo) {
+			ArrayList<ContinuousFrameActions> videoActions = new ArrayList<ContinuousFrameActions>(Arrays.asList(
+				new ContinuousFrameActions(
+					new FrameActions(
+						new Action[]{
+							new Action(
+								ActionType.Backward,20
+							)
+						}
+					), 50)
+				)
+			);
+			
+			video = new Video(videoFrames, videoFPS, videoActions);
+			video.renderVideo();
+			while(true) {
+				video.playVideo();
+			}
+		}
+		else {
+			while(true) {
+				scene.updateScene();
+				Window.screen = scene.renderScene();
+				Main.window.draw.repaint();
+			}
 		}
 	}
 	

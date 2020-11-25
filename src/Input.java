@@ -9,6 +9,8 @@ public class Input extends KeyAdapter {
 	private static final double smoothnessTurn = 0.01;
 	
 	public void keyPressed(KeyEvent evt) {
+		Action turn = null;
+		Action move = null;
 		switch(evt.getKeyCode()) {
 			case KeyEvent.VK_UP:
 				Main.screen.yzr+=smoothnessTurn;
@@ -38,30 +40,31 @@ public class Input extends KeyAdapter {
 		}
 		switch(evt.getKeyChar()) {
 			case 'w':
-				Main.screen.z+=smoothnessMove;
-				Main.camera.z+=smoothnessMove;
+				move = new Action(ActionType.Forward, smoothnessMove);
             break;
-            
+            	
 	        case 's':
-	        	Main.screen.z-=smoothnessMove;
-				Main.camera.z-=smoothnessMove;
+	        	move = new Action(ActionType.Backward, smoothnessMove);
             break;
             
 	        case 'a':
-	        	Main.screen.x-=smoothnessMove;
-				Main.camera.x-=smoothnessMove;
+	        	move = new Action(ActionType.Left, smoothnessMove);
             break;
             
 	        case 'd':
-	        	Main.screen.x+=smoothnessMove;
-				Main.camera.x+=smoothnessMove;
+	        	move = new Action(ActionType.Right, smoothnessMove);
             break;
             
 	        case 'r':
 	        	Main.window.fullRes();
             break;
 		}
-		
+		if(move!=null) {
+			move.run();
+		}
+		if(turn!=null) {
+			turn.run();
+		}
 		Main.scene.renderScene();
 	}
 }
