@@ -49,7 +49,6 @@ class Window extends JFrame {
     	Window.height = (int) (Window.screenSize.height * res);
     	Window.res = (int) Math.round(1/res);
     	Window.screen = new Color[Window.width][Window.height];
-    	Main.camera = new Camera(Window.width/2,0,-Window.height*2);
 	}
 }
 

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-	public static final int sceneToRender = 0;
+	public static final int sceneToRender = 2;
 	public static final double gravity = 1;
 	
 	static Window window;
@@ -13,12 +13,12 @@ public class Main {
 	static final Scene scene = new Scene();
 	
 	static final boolean darkMode = true;
-	static final boolean runVideo = false;
-	static final int videoFrames = 300;
+	static final boolean runVideo = true;
+	static final int videoFrames = 10000;
 	static final int videoFPS = 30;
 	
 	public static void main(String[] args) {
-		window = new Window(0.1);
+		window = new Window(0.5);
 		
 		camera = new Camera(Window.width/2,Window.height/2,-Window.height*2);
 		screen = new Screen(0,0,0);
@@ -28,14 +28,23 @@ public class Main {
 		
 		if(runVideo) {
 			ArrayList<ContinuousFrameActions> videoActions = new ArrayList<ContinuousFrameActions>(Arrays.asList(
-				new ContinuousFrameActions(
-					new FrameActions(
-						new Action[]{
+					new ContinuousFrameActions(
+						new FrameActions(
 							new Action(
-								ActionType.Backward,20
+								ActionType.Backward,30
+							),
+							new Action(
+								ActionType.Right,-10
 							)
-						}
-					), 50)
+						), 70
+					),
+					new ContinuousFrameActions(
+						new FrameActions(
+							new Action(
+								ActionType.Right,5
+							)
+						), 100
+					)
 				)
 			);
 			
