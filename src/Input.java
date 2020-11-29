@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Input extends KeyAdapter {
 	private static final double smoothnessMove = 50;
-	private static final double smoothnessTurn = 0.01;
+	private static final double smoothnessTurn = 0.02;
 	
 	public void keyPressed(KeyEvent evt) {
 		Action turn = null;

@@ -13,14 +13,14 @@ public class Main {
 	static final Scene scene = new Scene();
 	
 	static final boolean darkMode = true;
-	static final boolean runVideo = true;
-	static final int videoFrames = 100;
-	static final int videoFPS = 50;
+	static final boolean runVideo = false;
+	static final int videoFrames = 300;
+	static final int videoFPS = 30;
 	
 	public static void main(String[] args) {
-		window = new Window();
+		window = new Window(0.1);
 		
-		camera = new Camera(Window.width/2,0,-Window.height*2);
+		camera = new Camera(Window.width/2,Window.height/2,-Window.height*2);
 		screen = new Screen(0,0,0);
 		
 		scene.initializeScenes();
@@ -40,7 +40,7 @@ public class Main {
 			);
 			
 			video = new Video(videoFrames, videoFPS, videoActions);
-			video.renderVideo();
+			video.renderVideo(1);
 			while(true) {
 				video.playVideo();
 			}

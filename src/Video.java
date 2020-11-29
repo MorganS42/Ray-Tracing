@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 public class Video {
 	int frames;
 	int fps;
+	boolean rendering = false;
+	double renderingDone = 0;
 	public ArrayList<Color[][]> video;
 	public ArrayList<FrameActions> videoActions;
 	Video(int frames, int fps) {
@@ -22,7 +24,8 @@ public class Video {
 		}
 	}
 	
-	void renderVideo() {
+	void renderVideo(int smoothness) {
+		rendering = true;
 		for(int i=0; i<frames; i++) {
 			Main.scene.updateScene();
 			Color[][] frame = Main.scene.renderScene();
@@ -33,8 +36,13 @@ public class Video {
 			}
 			video.add(frame);
 			
-			System.out.println("Percent Done: "+((double)i/(double)frames * 100.0) + "%");
+			renderingDone = (double)i/(double)frames;
+			if(Math.floor(renderingDone*100.0) % smoothness == 0) {
+				Main.window.draw.repaint();
+				System.out.println("Percent Done: "+(renderingDone * 100.0) + "%");
+			}
 		}
+		rendering = false;
 	}
 	
 	void playVideo() {
